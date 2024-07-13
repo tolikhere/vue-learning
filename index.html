@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Reactivity</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+</head>
+<body>
+    <section class="app vue-app">
+        <h1>VUE</h1>
+        <h2>Welcome!</h2>
+        <p>Counter: {{ counter }}</p>
+    </section>
+
+    <script>
+        var app = new Vue({
+            el: '.vue-app',
+            data: {
+                counter: 1
+            }
+        })
+    </script>
+</body>
+</html>
