@@ -11,7 +11,7 @@
         <h1>VUE</h1>
         <h2>Welcome!</h2>
         <p>Counter: {{ counter }}</p>
-        <button class="button" type="button">+1</button>
+        <button class="button" type="button" v-on:click="incrementCounterHandler">+1</button>
     </section>
 
     <section class="app js-app">
@@ -26,6 +26,11 @@
             el: '.vue-app',
             data: {
                 counter: 1
+            },
+            methods: {
+                incrementCounterHandler() {
+                    this.counter += 1;
+                }
             }
         })
     </script>
