@@ -11,12 +11,14 @@
         <h1>VUE</h1>
         <h2>Welcome!</h2>
         <p>Counter: {{ counter }}</p>
+        <button class="button" type="button">+1</button>
     </section>
 
     <section class="app js-app">
         <h1>JS</h1>
         <h2>Welcome!</h2>
         <p>Counter: <span class="counter"></span></p>
+        <button class="button" type="button">+1</button>
     </section>
 
     <script>
@@ -26,6 +28,14 @@
                 counter: 1
             }
         })
+    </script>
+    <script>
+        const data = {
+            counter: 1
+        };
+
+        const counterEl = document.querySelector('.js-app .counter');
+        counterEl.textContent = data.counter;
     </script>
 </body>
 </html>
