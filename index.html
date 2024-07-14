@@ -30,12 +30,20 @@
         })
     </script>
     <script>
+        const counterEl = document.querySelector('.js-app .counter');
+        const buttonEl = document.querySelector('.js-app .button');
+
         const data = {
             counter: 1
         };
 
-        const counterEl = document.querySelector('.js-app .counter');
+        const incrementCounterHandler = function () {
+            data.counter += 1;
+            counterEl.textContent = data.counter;
+        }
+
         counterEl.textContent = data.counter;
+        buttonEl.addEventListener('click', incrementCounterHandler);
     </script>
 </body>
 </html>
