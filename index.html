@@ -10,14 +10,14 @@
     <section class="app vue-app">
         <h1>VUE</h1>
         <h2>Welcome!</h2>
-        <p>Counter: {{ counter }}</p>
+        <p>Counter: {{ counter }} + 2 = {{ sum }}</p>
         <button class="button" type="button" v-on:click="incrementCounterHandler">+1</button>
     </section>
 
     <section class="app js-app">
         <h1>JS</h1>
         <h2>Welcome!</h2>
-        <p>Counter: <span class="counter"></span></p>
+        <p>Counter: <span class="counter"></span> + 2 = <span class="sum"></span></p>
         <button class="button" type="button">+1</button>
     </section>
 
@@ -31,12 +31,18 @@
                 incrementCounterHandler() {
                     this.counter += 1;
                 }
+            },
+            computed: {
+                sum() {
+                    return this.counter + 2;
+                }
             }
         })
     </script>
     <script>
         const counterEl = document.querySelector('.js-app .counter');
         const buttonEl = document.querySelector('.js-app .button');
+        const sumEl = document.querySelector('.js-app .sum');
 
         const data = {
             counter: 1
@@ -47,7 +53,33 @@
             counterEl.textContent = data.counter;
         }
 
+        function getSum() {
+            const sum = data.counter + 2;
+            sumEl.textContent = sum;
+        }
+
+        const queue = [getSum];
+
+        Object.keys(data).forEach(key => {
+            let value = data[key]; // data.counter, data.counter1, ...
+            console.log(value);
+            Object.defineProperty(data, key, {
+                get: function () {
+                    console.log('get');
+                    // queue.push(...); add function that you need
+                    return value;
+                },
+                set: function (newValue) {
+                    console.log('set');
+                    value = newValue;
+                    queue.forEach(fn => fn());
+                }
+            });
+        });
+
         counterEl.textContent = data.counter;
+        getSum();
+
         buttonEl.addEventListener('click', incrementCounterHandler);
     </script>
 </body>
